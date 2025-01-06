@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head class="scroll-smooth overflow-y-scroll w-100vw overflow-x-hidden">
+	<meta charset="utf-8" />
+	<!-- favicon -->
+	<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+
+	<!-- viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- favicon -->
+	<link rel="icon" type="image/png" sizes="32x32"
+		href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAA3NJREFUWEftln1MzHEcx9+/u3N1HdL1qCTl3CqlB5fG8jDpPDRNmyjtWKsbw9JCbAwZI0xGojZSYx6X8pyiZWiSUstTLj2X9EisVNfZ79d2+nLurmY7m75/fr7vz+fz2nuf7+f3o3rr/JXQ46FGAEYc0LsD/d9y9PsKlErlvwOQ+eQ1Xsob1W4FviEXDtYCSMRTMJrHVatR9CuRVViB8vo2VDV1wJDLgchGgKl25vB2tFGbQw12ICzuGlKzijSuJTNjPi7sWAk/sZDQpeWUYs/5R6j62KE238dlIo6tk8BTaEXcDxmAzmaxWEjfG4qAWU5MsQsPyyA9lKF1n9IuvkiIgGiCQKUdFgCdLbI1w6uUKPT09sM06Ai6e/p+FqUouNpboOt7L97XtxFgtBOPjqzWDcDLcQIu7gyGvKEVmxJu4V1NM1EsN14GNpuDOVtSiXhcuC+2Bs1kYok3C7Hx5D3VPZvNwpf0GPAMOExMowOzp9kj75iMEWYXyrEw5izR6HT0MvB4PKw5nEnENwR4IVY6B4IxPPQp+lFa+Ym4d7EzB3cUe2gA5bUtcFxzlCi0L1wCPy8RvCNJsIE5oZjpd7Q1g8dkK/h6TIKXyPq3OdHZgYTr+Yg8cZMocGlXCAJ9psJ9fTLe1LRoHcJFYiFSNi+FpQlftxmwszJBxBIxyutacPFBKfoUCmLQ3qVFQ2hjipIPTQjYfQW1zZ+1Qsx3t0f2gVBQ1IB02K9g9UJPnNu2XNXwa1cPku4U4XaBHM/e1jMv4E+n4Hg4xKLxwweY4WSLzH1SWJqMVtuDXu4Vje0MSOKtQuS/riN0yVH+iFjkMTQAAy4HDuMFWOXrhm0hc8Fhs5gCBy8/xbXHb1QNbEzHIGP3CpXFb2tb4Sw7RQCciV6KMImbdgBrs7GovhTDCNmsgYa/noQbzxGZmEWEJdMnI3ieM1gUhZT7JcgrrSbuixNlcHOw1A2g7sp2jYPV/rUbLmuT0NjaqXUAacECTwdk7V+l2xDSDmgDoIvmFFciMPYqvnX3aIRwtjNH7iEpzI2NVDqNr0BXALoa/fmNTy/A3edyyBt+7n+LcXwIrQWQLfaA1NeVWVCDDwFQVtmE+pYvqnv6ez7XzV4naweLvvcq0N7ZhbF8AxgZjNKYTwAMudNfSKAU7fH6/SXT+1/xCMB/78APKF2mz5gygrQAAAAASUVORK5CYII=">
+
+	<!-- theme css -->
+	<!-- <link href="/static/css/theme.css" media="screen" rel="stylesheet" type="text/css"> -->
+	<link href="/static/css/theme.css" media="screen" rel="stylesheet" type="text/css">
+
+	<!-- icon font preload -->
+	<!-- <link rel="preload" as="font" href="/static/fonts/cartzilla-icons.ttf" type="font/ttf" crossorigin=""> -->
+
+	<!-- preconnect to fontshare -->
+	<!-- <link
+			nonce="%sveltekit.nonce%"
+			rel="preconnect"
+			href="https://cdn.fontshare.com"
+			crossorigin /> -->
+
+	<!-- preload Synonym font from fontshare -->
+	<!-- <link
+			rel="preload"
+			href="https://cdn.fontshare.com/wf/74H2KDWJMBALTKHNIQRGZBU5ICACXZVT/ELAHIXGEN3HHKQ7JK54VOXWQFZLLOHW2/37TO4J4G54TAREFY7PFS5VAXDGLM7BKV.woff2"
+			as="font"
+			nonce="%sveltekit.nonce%"
+			type="font/woff2"
+			crossorigin
+			fetchpriority="high"
+			font-display="swap" /> -->
+
+	<!-- preload Chillax font from fontshare -->
+	<!-- <link
+			rel="preload"
+			href="https://cdn.fontshare.com/wf/2T24MWUOKZU65SZJ33GPRGNOKE4KPOBX/T6LIXZJIPB23UDPMTIKURYWSZLXZBJ3A/THF5L6EHVL4N4NNE3GYDZNZSHABL5CH5.woff2"
+			as="font"
+			nonce="%sveltekit.nonce%"
+			type="font/woff2"
+			crossorigin
+			fetchpriority="high"
+			font-display="swap" /> -->
+
+	<!-- <link
+			nonce="%sveltekit.nonce%"
+			rel="preconnect"
+			href="https://api.fontshare.com"
+			crossorigin />
+
+		<link
+			nonce="%sveltekit.nonce%"
+			href="https://api.fontshare.com/v2/css?f[]=synonym@1&f[]=chillax@600&display=swap"
+			rel="stylesheet"
+			crossorigin /> -->
+
+	%sveltekit.head%
+
+	<script defer="" src="/static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="handheld-toolbar-enabled" data-sveltekit-preload-data="hover">
+	<div class="contents">%sveltekit.body%</div>
+</body>
+
+</html>

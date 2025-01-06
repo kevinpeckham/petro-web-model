@@ -1,0 +1,39 @@
+version: "0.2"
+ignorePaths:
+  - /apps/web/src/lib/data/**.json
+  - /apps/web/src/lib/data/**.jsonc
+  - /cspell.config.yaml
+  - bun.lockb
+  - package.json
+  - /node_modules/
+dictionaryDefinitions: []
+dictionaries: []
+patterns:
+  - name: nanoID
+    pattern: /(["'`])[A-Za-z0-9_\-]{21}$1"/
+  - name: acronym
+    pattern: /[A-Z]{3,}/
+  - name: url
+    pattern: /(?:https?:\/\/)?[a-z0-9-_./]+\.[a-z0-9-_./]{2,}/
+  - name: articleSlug
+    pattern: /(?:[a-z0-9]+-){2,}(?:[a-z0-9]+)/
+  - name: properNoun
+    pattern: /[A-Z][a-zü]+/
+  - name: htmlSpecialCharacters
+    pattern: /&(?:[a-z]{2,});/
+  - name: imageFormats
+    pattern: /(?:(?:webp|avif|png|jpg|jpeg|svg|gif)s?(?![a-zA-Z0-9]))+/i
+  - name: videoFormats
+    pattern: /(?:(?:webm|mp4)s?)+/i
+  - name: specialPossesive
+    pattern: /[a-z]+&rsquo;[a-z]+/
+ignoreRegExpList:
+  - nanoID
+  - imageFormats
+  - videoFormats
+  - htmlSpecialCharacters
+words:
+  - Neue
+  - Noto
+  - Segoe
+import: []

@@ -1,0 +1,35 @@
+User-agent: *
+Disallow: /
+Crawl-delay: 31536000
+
+# Explicitly disallow all robots and crawler behaviors
+Noindex: /
+Nofollow: /
+Noarchive: /
+Nocache: /
+Nosnippet: /
+Noimageindex: /
+Notranslate: /
+Noodp: /
+
+# Additional common crawlers explicitly blocked
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# Maximum crawl delay (1 year in seconds)
+Crawl-delay: 31536000
