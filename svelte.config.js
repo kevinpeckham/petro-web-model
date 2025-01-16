@@ -39,7 +39,7 @@ const csp = {
 		// styles
 		"style-src": ["self", "https://cdn.lj.dev/", "https://api.fontshare.com/"],
 		// scripts
-		"script-src": ["self", "strict-dynamic"],
+		"script-src": ["self", "unsafe-inline", "https://www.petroskills.com/"],
 	},
 	mode: "auto",
 };

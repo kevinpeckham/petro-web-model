@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="u-font-sans" lang="en">
 
 <head class="scroll-smooth overflow-y-scroll w-100vw overflow-x-hidden">
 	<meta charset="utf-8" />
@@ -15,7 +15,7 @@
 
 	<!-- theme css -->
 	<!-- <link href="/static/css/theme.css" media="screen" rel="stylesheet" type="text/css"> -->
-	<link href="/static/css/theme.css" media="screen" rel="stylesheet" type="text/css">
+	<!-- <link href="/static/css/theme.css" media="screen" rel="stylesheet" type="text/css"> -->
 
 	<!-- icon font preload -->
 	<!-- <link rel="preload" as="font" href="/static/fonts/cartzilla-icons.ttf" type="font/ttf" crossorigin=""> -->
@@ -63,11 +63,78 @@
 
 	%sveltekit.head%
 
-	<script defer="" src="/static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- vue loader -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script> -->
+
+	<!-- axios loader -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0/axios.min.js"></script> -->
+
+	<!-- stripe loader-->
+	<!-- <script src="https://js.stripe.com/v3/"></script> -->
+
+	<!-- v-mask -- input masking -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script> -->
+
+	<!-- lodash -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script> -->
+
 </head>
 
-<body class="handheld-toolbar-enabled" data-sveltekit-preload-data="hover">
+<body class="u-font-sans handheld-toolbar-enabled" data-sveltekit-preload-data="hover">
 	<div class="contents">%sveltekit.body%</div>
 </body>
+
+
+<script src="/static/vendor/bootstrap/dist/js/bootstrap.bundle.min.js" defer></script>
+<!-- <script src="/static/vendor/simplebar/dist/simplebar.min.js" defer></script>
+<script src="/static/vendor/tiny-slider/dist/min/tiny-slider.js" defer></script>
+<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js" defer></script> -->
+<!-- <script src="/cache-buster-1629475558/static/vendor/drift-zoom/dist/Drift.min.js"></script> -->
+<!-- <script src="/cache-buster-1629475558/static/vendor/lightgallery.js/dist/js/lightgallery.min.js"></script> -->
+<!-- <script src="/cache-buster-1629475558/static/vendor/lg-video.js/dist/lg-video.min.js"></script> -->
+<!-- <script src="/cache-buster-1629475557/static/vendor/card/dist/card.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
+
+<!-- theme -->
+<script src="/static/js/theme.js" defer="defer"></script>
+
+<!-- state ? -->
+<script src="/cache-buster-1677682006/static/js/state.js"></script>
+
+<!-- Terms Feede -->
+<!-- <script async="" src="https://cdn.termsfeedtag.com/plugins/pc/v1/c484c60d681f4b7ca0f088d5a189cd5c/plugin-2.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.termsfeedtag.com/plugins/pc/v1/c484c60d681f4b7ca0f088d5a189cd5c/plugin.js" async="async"></script> -->
+
+<!-- OLARK -->
+<!-- <script type="text/javascript" async=""> ;(function(o,l,a,r,k,y){if(o.olark)return; r="script";y=l.createElement(r);r=l.getElementsByTagName(r)[0]; y.async=1;y.src="//"+a;r.parentNode.insertBefore(y,r); y=o.olark=function(){k.s.push(arguments);k.t.push(+new Date)}; y.extend=function(i,j){y("extend",i,j)}; y.identify=function(i){y("identify",k.i=i)}; y.configure=function(i,j){y("configure",i,j);k.c[i]=j}; k=y._={s:[],t:[+new Date],c:{},l:a}; })(window,document,"static.olark.com/jsclient/loader.js");
+	/* custom configuration goes here (www.olark.com/documentation) */
+	olark.identify('2358-707-10-6160');</script> -->
+
+<!-- stripe -->
+<!-- <iframe name="__privateStripeMetricsController9620" frameborder="0" allowtransparency="true" scrolling="no" role="presentation" allow="payment *" src="https://js.stripe.com/v3/m-outer-3437aaddcdf6922d623e172c2d6f9278.html#url=https%3A%2F%2Fwww.petroskills.com%2Fen%2Ftraining%2Fcourses%2Fbasic-petroleum-geology---bg---elearning-series~p3138&amp;title=Basic%20Petroleum%20Geology%20-%20BG%20-%20eLearning%20series&amp;referrer=https%3A%2F%2Fwww.petroskills.com%2Fen%2Ftraining%2Fcourses%2Fbasic-petroleum-geology---bg~p2919&amp;muid=3b661bad-250e-4af2-8159-833c981bba29fa7955&amp;sid=8d2a9f0a-9804-4a0f-9851-0ab758139b816cc16d&amp;version=6&amp;preview=false" aria-hidden="true" tabindex="-1" style="border: none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;"></iframe> -->
+
+<!-- cart -->
+<!-- <script src="/cache-buster-1653395550/static/js/training/shippingaddress.js"></script>
+<script src="/cache-buster-1653394985/static/js/training/billingaddress.js"></script>
+<script src="/cache-buster-1653401138/static/js/training/course/cartview.js"></script>
+<script src="/cache-buster-1671580056/static/js/training/course/addstudent.js"></script>
+<script src="/cache-buster-1671580256/static/js/training/course/ordersuccess.js"></script>
+<script src="/cache-buster-1671580389/static/js/training/course/ordersummary.js"></script>
+<script src="/cache-buster-1653396500/static/js/training/course/paymentinfo.js"></script>
+<script src="/cache-buster-1677682068/static/js/training/course/yourinfo.js"></script>
+<script src="/cache-buster-1718885020/static/js/training/module/addmodulestudent.js"></script>
+<script src="/cache-buster-1635230606/static/js/training/module/addtocartmodule.js"></script>
+<script src="/cache-buster-1718885124/static/js/training/yourinfo.js"></script>
+<script src="/cache-buster-1729067616/static/js/training/paymentinfo.js"></script>
+<script src="/cache-buster-1631773711/static/js/training/addtocart.js"></script>
+<script src="/cache-buster-1684833622/static/js/training/cartview.js"></script>
+<script src="/cache-buster-1684833136/static/js/training/ordersummary.js"></script>
+<script src="/cache-buster-1653395256/static/js/training/ordersuccess.js"></script>
+<script src="/cache-buster-1677843681/static/js/training/invoice-payment/order-payment.js"></script>
+<script src="/cache-buster-1729119332/static/js/training/schedule/filter.js"></script>
+<script src="/cache-buster-1634611044/static/js/training/schedule/trainingtopfilter.js"></script>
+<script src="/cache-buster-1653396794/static/js/training/schedule/training.js"></script>
+<script src="/cache-buster-1637128974/static/js/globalSearch.js"></script>
+<script src="/cache-buster-1718885202/static/js/app.js"></script> -->
 
 </html>

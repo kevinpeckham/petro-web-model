@@ -1,156 +1,49 @@
-<script lang="ts">
-  // components
-  import NavLink  from "$components/NavIconLink.svelte"
-  import NavMenu from "$components/NavMenu.svelte"
-
-	// types
-	import type { NavDatum } from "$data/nav"
-
-	// data
-	import { siteNavData as nav} from "$data/nav"
-
-	const about = nav.mainNav.find((m) => m.handle === "about");
-	const products = nav.mainNav.find((m) => m.handle === "products");
-  const solutions = nav.mainNav.find((m) => m.handle === "solutions");
-	const resources = nav.mainNav.find((m) => m.handle === "resources");
-
-</script>
-
-<!-- <li><a class="dropdown-item" href={item.href}>{item.text}</a></li> -->
-{#snippet menuLink(item?: NavDatum | null)}
-	{#if item?.href}
-			<a
-				href="{item.href}"
-				class="dropdown-item">
-
-				<!-- type is tout -->
-				{#if item.type === "tout"}
-					<div class="ms-2">
-						<span class="d-block text-heading">{item.heading}</span>
-						<small class="d-block text-muted">{item.text}</small>
-					</div>
-
-					{:else if item.icon}
-						<div class="d-flex">
-							<div class="lead text-muted pt-1"><i class={item.icon}></i></div>
-							<div class="ms-2">
-									<span class="d-block text-heading">{item.heading}</span>
-									<small class="d-block text-muted">
-										{item.text}
-									</small>
-							</div>
-						</div>
-
-					{:else}
-						<!-- plain link -->
-						{item.text}
-				{/if}
-			</a>
-	{/if}
-{/snippet}
-
-{#snippet menu(menu?: NavDatum | null, options?: {[key:string]: string | null; } | null)}
-	{#if menu && menu?.items?.[0]}
-		<!-- menu container -->
-		<li class={options?.containerClasses ?? null}>
-
-			<!-- heading -->
-			{#if menu.heading}
-				<div data-bs-toggle={options?.["data-bs-toggle"] ?? null} class={options?.headingClasses ?? null}>{menu.heading}</div>
-			{/if}
-
-			<!-- list -->
-			<ul class={options?.ulClasses ?? null}>
-					{#each menu.items as item}
-						<li>
-							{@render menuLink(item)}
-						</li>
-					{/each}
-			</ul>
-		</li>
-		{:else}
-			{@render menuLink(menu)}
-	{/if}
-{/snippet}
-
 <header class="shadow-sm">
-	<!-- announcement bar -->
-	{#if nav?.announcementBar?.text || nav?.announcementBar?.heading }
-    <div class="topbar topbar-dark bg-faded-primary">
-        <div class="container">
-          <div>
-            <div class="topbar-text d-md-inline-block border-start border-light text-dark"><span class="me-1" style="font-weight: bold;">{nav?.announcementBar?.heading}</span>{nav?.announcementBar?.text}</div>
-          </div>
-        </div>
+  <div class="topbar topbar-dark bg-faded-primary">
+    <div class="container">
+      <div>
+        <div class="topbar-text d-md-inline-block border-start border-light text-dark"><span class="me-1" style="font-weight: bold;"></span></div>
       </div>
-	{/if}
-
-	<!-- nav -->
-  <div class="navbar-sticky u-bg-light">
-
-    <!-- brand & tool bar row-->
+    </div>
+  </div>
+  <div class="navbar-sticky bg-light">
     <div class="navbar navbar-expand-lg navbar-light">
-      <div class="container">
-       <!-- brand -->
-        <a href="/" aria-label="Go to Homepage" class="navbar-brand d-sm-block me-3 flex-shrink-0">
+      <div class="container"><a href="/" aria-label="Go to Homepage" class="navbar-brand d-sm-block me-3 flex-shrink-0">
           <picture>
             <source srcset="/static/images/PetroSkills-Logo.png" type="image/svg+xml">
             <source srcset="/static/images/PetroSkills-Logo.webp" type="image/webp"> <img src="/static/images/PetroSkills-Logo.png" width="541" height="186" loading="eager" alt="Petroskills Logo" draggable="false" style="height: 50px; width: 185px;">
           </picture>
         </a>
-
-        <!-- search -->
         <div class="nav-search input-group d-none d-lg-flex flex-nowrap mx-4 mb-0">
+          <!-- search -->
           <form class="nav-search input-group flex-nowrap mx-2 mb-0">
-            <input id="autoComplete" type="text" name="term" placeholder="Find courses, online learning, and more" autocomplete="off" class="form-control rounded-start w-100 position-relative"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+           <input id="autoComplete" type="text" name="term" placeholder="Find courses, online learning, and more" autocomplete="off" class="form-control rounded-start w-100 position-relative"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
           </form>
         </div>
-
-        <!-- toolbar & cart -->
-        <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
-
-            <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" class="border-0 bg-transparent d-lg-none">
-              <i class="ci-search"></i>
-            </button>
-
-            <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
-
-            <a href="#" class="navbar-tool navbar-stuck-toggler"><span class="navbar-tool-tooltip">Toggle menu</span>
-              <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
-            </a>
-
-            <!-- cart -->
-            <div class="navbar-tool dropdown position-relative ms-3">
-              <a data-bs-toggle="modal" data-bs-target="#add_to_cart_modal" href="#" class="navbar-tool-icon-box bg-secondary dropdown-toggle"><span aria-label="number of items in cart" class="navbar-tool-label"><span>0</span></span> <i class="navbar-tool-icon ci-cart"></i></a> <a data-bs-toggle="modal" data-bs-target="#add_to_cart_modal" href="#" class="navbar-tool-text"><small>My Cart</small> <span><span>$0.00</span></span></a>
-            </div>
+        <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center"><button type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" class="border-0 bg-transparent d-lg-none"><i class="ci-search"></i></button> <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button> <a href="#" class="navbar-tool navbar-stuck-toggler"><span class="navbar-tool-tooltip">Toggle menu</span>
+            <div class="navbar-tool-icon-box"><i class="navbar-tool-icon ci-menu"></i></div>
+          </a>
+          <div class="navbar-tool dropdown position-relative ms-3">
+            <!----> <a data-bs-toggle="modal" data-bs-target="#add_to_cart_modal" href="#" class="navbar-tool-icon-box bg-secondary dropdown-toggle"><span aria-label="number of items in cart" class="navbar-tool-label"><span>0</span></span> <i class="navbar-tool-icon ci-cart"></i></a> <a data-bs-toggle="modal" data-bs-target="#add_to_cart_modal" href="#" class="navbar-tool-text"><small>My Cart</small> <span><span>$0.00</span></span></a>
+          </div>
         </div>
       </div>
     </div>
-
-
-    <!-- main nav -->
     <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
       <div class="container">
         <div id="navbarCollapse" class="collapse navbar-collapse">
-
-          <!-- mobile search -->
-					<div class="input-group d-lg-none my-3">
+          <div class="input-group d-lg-none my-3">
             <form class="nav-search input-group flex-nowrap mx-2 mb-0">
-              <input id="autoComplete" type="text" name="term" placeholder="Find courses, online learning, and more..." autocomplete="off" class="form-control rounded-start w-100 position-relative">
-              <i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+              <!----> <input id="autoComplete" type="text" name="term" placeholder="Find courses, online learning, and more" autocomplete="off" class="form-control rounded-start w-100 position-relative"><i class="ci-search position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+              <!---->
+              <!---->
+              <!---->
             </form>
           </div>
-
-					<!-- FIND TRAINING - MEGA NAV -->
           <ul class="navbar-nav navbar-mega-nav pe-lg-2 me-lg-2">
-            <li class="nav-item dropdown">
-							<a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle ps-lg-0">
-								<i class="ci-menu align-middle mt-n1 me-2"></i>Find Training
-							</a>
-
-
-							<ul class="dropdown-menu">
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+            <li class="nav-item dropdown"><a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle ps-lg-0"><i class="ci-menu align-middle mt-n1 me-2"></i>Find Training</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M95.043 5.973c-12.9 13.899-30.176 32.735-44.367 52.941S25 100.677 25 121.322c0 12.375 4.569 30.25 16.164 45.94S72.006 196 99.5 196s46.742-13.047 58.336-28.737S174 133.698 174 121.322c0-20.772-12.093-42.246-26.474-62.409S116.071 19.92 104.622 6.239c-3.717-3.072-5.98-2.81-9.579-.267h0zM100.067 20c11.386 13.36 25.53 29.37 37.748 46.513C151.647 85.921 162 106.224 162 121.805c0 9.008-3.962 25.288-13.696 38.47S123.695 184 100 184s-38.57-10.543-48.304-23.725S38 130.812 38 121.805c0-15.707 9.86-35.927 23.45-55.292C73.515 49.321 87.888 33.238 100.067 20zm-51.751 93c-12.7 17.187 12.7 66.598 48.684 58.005C65.249 155.967 52.549 113 48.316 113z"></path>
                       </svg></span>Upstream</a>
                   <div class="dropdown-menu p-0">
@@ -212,7 +105,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M138.308 61.6H80.846V36c0-3.537-2.859-6.4-6.385-6.4V10.4c0-3.537-2.859-6.4-6.385-6.4H29.769c-3.526 0-6.385 2.863-6.385 6.4v19.2C19.859 29.6 17 32.463 17 36v44.8c0 24.7 20.048 44.8 44.692 44.8h57.462V164c0 3.537 2.859 6.4 6.385 6.4v19.2c0 3.537 2.859 6.4 6.385 6.4h38.308c3.526 0 6.385-2.863 6.385-6.4v-19.2c3.526 0 6.385-2.863 6.385-6.4v-57.6c0-24.7-20.048-44.8-44.692-44.8zM36.154 16.8h25.538v12.8H36.154V16.8zm83 96H61.692c-17.601 0-31.923-14.356-31.923-32V42.4h38.308v19.2c0 7.056 5.727 12.8 12.769 12.8h57.462c17.601 0 31.923 14.356 31.923 32v51.2h-38.308v-32c0-7.056-5.727-12.8-12.769-12.8zm44.692 70.4h-25.538v-12.8h25.538v12.8z"></path>
                       </svg></span>Midstream</a>
                   <div class="dropdown-menu p-0">
@@ -271,7 +164,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M124.652 10C139.734 10 152 22.15 152 37.09v2.924c13.306.438 24 11.221 24 24.421V116h6.458c4.171 0 7.542 3.353 7.542 7.5v60c0 4.14-3.371 7.5-7.542 7.5H16.542C12.371 191 9 187.64 9 183.5v-60c0-4.147 3.371-7.5 7.542-7.5H23V64.435c0-12.868 10.162-23.439 23-24.369V37.09C46 22.15 58.266 10 73.348 10h51.304zm50.265 121H24.083v45h150.833v-45zM62.5 146a7.5 7.5 0 1 1 0 15h-15a7.5 7.5 0 1 1 0-15h15zm45 0a7.5 7.5 0 1 1 0 15h-15a7.5 7.5 0 1 1 0-15h15zm44 0a7.5 7.5 0 1 1 0 15h-15a7.5 7.5 0 1 1 0-15h15zM124.652 25H73.348c-6.723 0-12.205 5.422-12.205 12.09v2.987C73.913 41.075 84 51.615 84 64.427V116h31V64.435c0-12.484 9.564-22.805 21.858-24.26V37.09c0-6.668-5.482-12.09-12.205-12.09zM59.158 55H47.842c-5.292 0-9.592 4.23-9.592 9.435V115h30.5V64.427c0-5.197-4.3-9.427-9.592-9.427zm92 0h-11.315c-5.292 0-9.592 4.23-9.592 9.435V115h30.5V64.435c0-5.205-4.3-9.435-9.592-9.435z"></path>
                       </svg></span>Downstream</a>
                   <div class="dropdown-menu p-0">
@@ -380,7 +273,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" class="d-none" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="d-none" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M145.125 4.001c-12.954.069-25.788 5.099-35.52 14.838-13.912 13.923-18.182 34.163-12.186 51.977l-32.877 32.797c-5.569 5.572-14.612 12.515-26.073 13.944a38.96 38.96 0 0 0-22.942 11.233C-1.628 145.955.497 174.73 21.02 189.098c13.074 9.153 31.375 9.213 44.503.12 9.064-6.279 14.997-15.636 16.702-26.351 1.67-10.49 5.499-18.793 11.375-24.673l35.622-35.544c17.783 6 38.018 1.751 51.95-12.192 14.811-14.82 18.742-36.867 10.818-55.585l-3.255-7.686-33.267 33.289-13.254-2.652-2.65-13.264 33.267-33.289-7.682-3.257c-6.422-2.723-13.24-4.049-20.025-4.014h0zm.218 11.226a39.21 39.21 0 0 1 7.002.63l-24.987 25.006 5.301 26.526 26.506 5.305 24.987-25.006c2.27 12.528-1.642 25.517-10.931 34.813-11.402 11.411-28.361 14.715-43.207 8.422l-3.483-1.478-40.876 40.786c-7.594 7.599-12.484 17.984-14.534 30.865-1.219 7.654-5.48 14.354-11.997 18.869-9.333 6.463-22.35 6.427-31.657-.088-15.045-10.534-16.008-31.1-3.989-43.128 4.468-4.471 10.131-7.245 16.381-8.025 11.578-1.442 22.862-7.375 32.628-17.147l38.137-38.045-1.481-3.497c-6.29-14.856-2.988-31.828 8.414-43.237 7.563-7.569 17.571-11.571 27.785-11.571h0zM43.358 139.757a16.81 16.81 0 0 0-11.928 4.948c-6.577 6.582-6.577 17.291 0 23.874 6.592 6.597 17.263 6.597 23.855 0 6.577-6.583 6.577-17.292 0-23.874a16.81 16.81 0 0 0-11.927-4.948h0zm0 11.257a5.6 5.6 0 0 1 3.976 1.65c2.193 2.193 2.193 5.762 0 7.957a5.62 5.62 0 0 1-7.952 0 5.64 5.64 0 0 1 0-7.957c1.099-1.099 2.538-1.65 3.976-1.65z"></path>
                       </svg> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M31.308 172.589c-1.475 0-2.947-.559-4.073-1.679a5.69 5.69 0 0 1 0-8.101l32.188-32.011c2.25-2.237 5.897-2.237 8.146 0a5.69 5.69 0 0 1 1.688 4.05c0 1.467-.562 2.933-1.688 4.05L35.381 170.91a5.75 5.75 0 0 1-4.073 1.679h0zm47.008-86.21a5.85 5.85 0 0 1 .959.771l4.649 4.623 15.371-15.299L78.44 55.709a5.71 5.71 0 0 1-1.463-5.62c2.624-9.135-.199-19.536-7.193-26.494v-.003c-6.17-6.141-14.772-8.943-23.166-7.937l15.581 15.511c6.579 6.551 6.579 17.21 0 23.761-3.18 3.168-7.426 4.915-11.946 4.915s-8.766-1.747-11.949-4.915L22.7 39.39c-1.115 8.462 1.691 17.041 7.942 23.03 7.063 7.035 17.505 9.848 26.683 7.236 2.011-.57 4.18-.011 5.66 1.461l15.331 15.262zm14.236 13.97l5.856 5.824 55.757-52.75c.614-.579 1.348-1.017 2.149-1.283l10.825-3.589 11.116-11.051-13.936-13.858-11.116 11.054-3.607 10.762a5.68 5.68 0 0 1-1.495 2.343l-55.549 52.549zm37.937 37.977c1.478 1.469 2.039 3.621 1.463 5.62-2.621 9.138.202 19.539 7.193 26.499 6.173 6.141 14.792 8.946 23.169 7.937l-15.581-15.511c-6.582-6.551-6.582-17.207 0-23.761a16.8 16.8 0 0 1 11.943-4.913c4.523 0 8.766 1.744 11.949 4.913l15.607 15.537c1.109-8.462-1.694-17.041-7.945-23.03-6.965-7.247-17.125-9.948-26.683-7.236a5.78 5.78 0 0 1-5.66-1.461L122.3 99.384l-15.431 15.205 23.621 23.738zM17.844 180.248c7.322 5.835 18.004 5.861 24.044-.003l32.548-32.366c-1.025-6.182 1.867-13.784 5.49-17.112 3.935-4.205 10.644-6.972 15.809-6.479.712.069 1.394.195 2.048.378l1.348-1.343-3.751-3.732a5.8 5.8 0 0 1-1.466-1.06l-14.005-13.927a5.73 5.73 0 0 1-1.092-1.512l-3.71-3.695-1.368 1.361a11.53 11.53 0 0 1 .38 2.037c.504 5.122-2.284 11.805-6.519 15.717-3.347 3.606-10.984 6.5-17.209 5.46l-32.568 32.389c-5.879 5.964-5.853 16.6.02 23.89h0zM30.334 196c-7.161 0-14.481-2.429-20.297-7.302a5.81 5.81 0 0 1-.694-.687c-9.903-11.687-9.774-29.504.294-39.713l35.155-34.961c2.002-1.994 5.168-2.237 7.458-.584 1.247.461 5.718-.882 6.879-2.005a4.5 4.5 0 0 1 .544-.553c1.772-1.564 2.924-4.537 2.996-5.921a5.71 5.71 0 0 1-1.959-3.615 5.7 5.7 0 0 1 1.639-4.778l4.615-4.589-9.866-9.822c-12.364 2.315-25.323-1.71-34.53-10.874-11.825-11.335-15.005-29.238-7.829-44.471.795-1.693 2.371-2.893 4.223-3.214 1.858-.324 3.742.275 5.07 1.596L46.46 46.832c2.011 2.002 5.577 2.002 7.585 0 2.097-2.088 2.097-5.483.003-7.571L31.616 16.932c-1.325-1.321-1.921-3.2-1.596-5.039A5.72 5.72 0 0 1 33.246 7.7c15.011-7.007 32.968-3.873 44.69 7.797v-.003c9.206 9.166 13.236 22.068 10.92 34.371l19.654 19.57 30.609-28.954 3.583-10.69c.282-.845.76-1.61 1.391-2.24l16.152-16.061c2.16-2.148 5.986-2.148 8.146 0l22.083 21.959c1.08 1.074 1.688 2.532 1.688 4.05s-.608 2.976-1.688 4.05l-16.152 16.058c-.631.63-1.4 1.103-2.25 1.386l-10.897 3.609-30.526 28.883 21.175 21.077c12.649-2.412 25.663 1.644 34.625 10.971 11.738 11.243 14.916 29.146 7.743 44.38-.798 1.693-2.374 2.893-4.223 3.214a5.74 5.74 0 0 1-5.073-1.593l-22.425-22.326c-2.011-2.002-5.577-2.008-7.587 0a5.34 5.34 0 0 0 0 7.568l22.428 22.326c1.325 1.321 1.921 3.2 1.596 5.039s-1.527 3.4-3.226 4.196c-15.011 7.001-32.968 3.873-44.69-7.797-9.206-9.163-13.233-22.065-10.917-34.371l-12.801-12.741-4.589 4.563c-1.262 1.255-3.028 1.879-4.805 1.63-1.426-.18-2.716-.882-3.638-1.948-1.388.072-4.379 1.215-5.951 2.976a5.72 5.72 0 0 1-.631.607c-1.054 1.089-2.414 5.537-1.852 6.929 1.665 2.28 1.322 5.271-.68 7.261l-35.117 34.921c-.012.014-.026.029-.04.04C44.783 193.465 37.642 196 30.334 196h0z"></path>
@@ -450,7 +343,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M134.626 8c-.21.013-.42.04-.628.081-3.084.454-5.394 3.823-5.342 7.788v23.122H72.344V23.576h42.233c2.176.039 4.2-1.421 5.297-3.822a9.59 9.59 0 0 0 0-7.771c-1.097-2.401-3.121-3.861-5.297-3.822H66.311c-.209-.014-.419-.014-.628 0-3.084.413-5.421 3.746-5.405 7.707v23.122h-36.2C16.383 38.991 10 47.145 10 56.975v113.041C10 179.846 16.383 188 24.078 188h152.844c7.695 0 14.078-8.154 14.078-17.984V56.975c0-9.83-6.383-17.984-14.078-17.984h-36.2V15.869c.034-2.086-.595-4.1-1.744-5.583S136.259 7.979 134.626 8zM24.078 54.406h12.067v118.18H24.078c-1.219 0-2.011-1.012-2.011-2.569V56.975c0-1.557.793-2.569 2.011-2.569zm24.133 0h104.578v118.18H48.211V54.406zm116.644 0h12.067c1.219 0 2.011 1.013 2.011 2.569v113.041c0 1.557-.793 2.569-2.011 2.569h-12.067V54.406z"></path>
                       </svg></span> <span class="d-inline-block me-3">Business &amp; Management</span></a>
                   <div class="dropdown-menu p-0">
@@ -500,7 +393,7 @@
                     </div>
                   </div>
                 </li>
-                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2 d-inline-block"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" xmlns:v="https://vecta.io/nano" style="width: 1.125rem; fill: rgb(1, 54, 99);">
+                <li class="dropdown mega-dropdown"><a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle"><span class="opacity-60 mt-n1 me-2 d-inline-block"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="width: 1.125rem; fill: rgb(1, 54, 99);">
                         <path d="M126.786 196H72.214c-3.767 0-6.821-3.054-6.821-6.821v-54.571H10.821c-3.767 0-6.821-3.054-6.821-6.821V73.214c0-3.767 3.054-6.821 6.821-6.821h54.571V11.821C65.393 8.054 68.447 5 72.214 5h54.571c3.767 0 6.821 3.054 6.821 6.821v54.571h54.571c3.767 0 6.821 3.054 6.821 6.821v54.571c0 3.767-3.054 6.821-6.821 6.821h-54.571v54.571c0 3.767-3.054 6.821-6.821 6.821zM79.5 183h41v-54.667c0-3.774 3.059-6.833 6.833-6.833H182v-41h-54.667c-3.774 0-6.833-3.059-6.833-6.833V19h-41v54.667c0 3.774-3.059 6.833-6.833 6.833H18v41h54.667c3.774 0 6.833 3.059 6.833 6.833V183z"></path>
                       </svg></span> <span class="d-inline-block me-3">Health, Safety &amp; Environment</span></a>
                   <div class="dropdown-menu p-0">
@@ -905,63 +798,234 @@
               </ul>
             </li>
           </ul>
-
-					<!-- OTHER NAV -->
           <ul class="navbar-nav">
+            <li class="nav-item dropdown"><a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle">About us
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/about/about-petroskills" class="dropdown-item"> About PetroSkills
+                  </a></li>
+                <li><a href="/about/the-alliance" class="dropdown-item"> The Alliance
+                  </a></li>
+                <li><a href="/about/our-history" class="dropdown-item"> Our History
+                  </a></li>
+                <li><a href="/about/our-leadership" class="dropdown-item"> Our Leadership
+                  </a></li>
+                <li><a href="/about/our-instructors" class="dropdown-item"> Our Instructors
+                  </a></li>
+                <li><a href="/careers/open-positions" class="dropdown-item"> Careers
+                  </a></li>
+              </ul>
+            </li>
 
-						<!-- About Us -->
-            <NavMenu menu={about} />
+            <!-- Products & Solutions -->
+            <li class="nav-item dropdown"><a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle"> Products &amp; Solutions
+              </a>
+              <!-- !! editing -- remove u-block after dev-->
+              <div class="dropdown-menu u-dropdown-menu u-block">
+                <div class="u-mega-dropdown-inner">
 
-						<!-- Products & Solutions -->
-						 <!-- {#if products?.heading && products?.items?.[0]}
-            <li id="menu-{products.handle}" class="nav-item dropdown">
+                  <!-- column one -->
+                  <div class="u-mega-dropdown-column">
 
-							<div data-bs-toggle="dropdown" class="dropdown-toggle">{products.heading}</div>
+                    <div>
+                     <!-- list heading -->
+                      <h6 class="u-dropdown-menu-heading"> Training Products</h6>
 
-							<div class="dropdown-menu p-0 ">
-                <div class="d-flex flex-wrap flex-sm-nowrap px-2">
+                      <ul class="u-dropdown-menu-list">
 
+                        <li class="u-dropdown-menu-list-item u-mb-2">
+                          <a class="u-dropdown-menu-icon-link" href="/training?productType%5B%5D=Course">
+                            <div>
+                              <div><i class="ci-edit"></i></div>
+                              <div>
+                                <span>Courses</span>
+                                <small>Classroom, Virtual, or On-Demand</small></div>
+                            </div>
+                          </a>
+                        </li>
 
-                  <ul class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
-										{#each products.items as submenu}
-											{#if submenu.column === 1}
-												{@render menu(submenu, {containerClasses: "widget widget-links mb-4", headingClasses: "fs-base mb-3", ulClasses: 'widget-list'})}
-											{/if}
-										{/each}
-									</ul>
+                        <li class="u-dropdown-menu-list-item u-mb-2">
+                          <a href="/blended" class="u-dropdown-menu-icon-link">
+                            <div>
+                              <div><i class="ci-idea"></i></div>
+                              <div>
+                                <span>eLearning</span>
+                                <small>for Engineers &amp; Technical Professionals</small></div>
+                              </div>
+                          </a>
+                        </li>
 
-                  <ul class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
-										{#each products.items as submenu}
-											{#if submenu.column === 2}
-												{@render menu(submenu, {containerClasses: "widget widget-links mb-4", headingClasses: "fs-base mb-3", ulClasses: 'widget-list'})}
-											{/if}
-										{/each}
-									</ul>
+                        <li class="mb-2">
+                          <a href="/about/solutions/epilot-elearning-libraries" class="u-dropdown-menu-icon-link">
+                            <div>
+                              <div><i class="ci-rocket"></i></div>
+                              <div>
+                                <span>eLearning</span>
+                                <small>for Operations &amp; Maintenance</small></div>
+                            </div>
+                          </a>
+                        </li>
 
+                        <li>
+                          <a href="/about/solutions/console-operator-training" class="u-dropdown-menu-icon-link">
+                            <div>
+                              <div><i class="ci-lightning"></i></div>
+                              <div>
+                                <span>Simulators</span>
+                                <small class="u-dropdown-menu-link-subtext">Operator Training Simulations</small>
+                              </div>
+                            </div>
+                          </a>
+                        </li>
 
-                  <ul class="mega-dropdown-column pt-1 pt-lg-4 pb-4 px-2 px-lg-3">
-										{#each products.items as submenu}
-											{#if submenu.column === 3}
-												{@render menu(submenu, {type: "tout"})}
-											{/if}
-										{/each}
-									</ul>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- column two-->
+                  <div class="u-mega-dropdown-column">
+                    <div>
+                      <h6 class="u-dropdown-menu-heading"> Training Solutions
+                      </h6>
+                      <ul class="u-dropdown-menu-list">
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/solutions/in-house-training"> In-house Training
+                          </a>
+                        </li>
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/ability"> Learning Management &amp; Compliance
+                          </a>
+                        </li>
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/solutions/guided-work-experiences"> Guided Work Experiences
+                          </a>
+                        </li>
+                      </ul>
+
+                      <h6 class="u-dropdown-menu-heading"> Competency Consulting
+                      </h6>
+                      <ul class="u-dropdown-menu-list">
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/about/solutions/competency-consulting"> Competency Management &amp; Consulting
+                          </a>
+                        </li>
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/competency-maps"> Competency Maps &amp; Toolkits
+                          </a>
+                        </li>
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/rapid-program-deployment"> Rapid Program Deployment
+                          </a>
+                        </li>
+                        <li class="u-dropdown-menu-list-item">
+                          <a class="u-dropdown-menu-link" href="/competency-program-management"> Competency Program Management
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- column three -->
+                  <div class="u-mega-dropdown-column">
+                    <div class="mb-3 u-dropdown-tout">
+                      <a href="/ability" class="u-dropdown-text-heading"> Ability™
+                      </a>
+                      <ul class="u-dropdown-menu-list">
+                        <li class="u-dropdown-text"> Our flagship organizational management tool, combining a powerful learning and compliance management engine with a competency development and assurance engine.
+                        </li>
+                        <a href="/ability" class="u-dropdown-link-cta"> learn more
+                      </ul>
+                    </div>
+                    <div class="mb-3 u-dropdown-tout">
+                      <a href="/blended" class="u-dropdown-text-heading"> eLearning for Engineers & Technical Professionals
+                      </a>
+                      <ul class="u-dropdown-menu-list">
+                        <li class="u-dropdown-text"> The Competency Alliance’s eLearning solutions combine industry knowledge, expertise, content, and technology to develop workforce competency. Online learning accelerates time to competency while eliminating travel expenses.
+                        </li>
+                        <a href="/blended" class="u-dropdown-link-cta">learn more</a>
+                      </ul>
+                    </div>
+                    <div class="u-dropdown-tout">
+                      <a href="/about/solutions/epilot-elearning-libraries" class="u-dropdown-text-heading"> eLearning for Operations & Maintenance
+                      </a>
+                      <ul class="u-dropdown-menu-list">
+                        <li class="u-dropdown-text"> Identify and bridge knowledge gaps in your workforce with our comprehensive eLearning courses in Health, Safety, Environment, and Technical Skills. Tailored for Operations and Maintenance Personnel, our programs support new hires, technicians, operators, and craftspeople at every stage of their careers.
+                        </li>
+                        <a href="/about/solutions/epilot-elearning-libraries" class="u-dropdown-link-cta">learn more</a>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </li>
-						{/if} -->
-
-            <!-- Products -->
-						<NavMenu menu={products} />
-
-            <!-- Solutions -->
-						<NavMenu menu={solutions} />
-
-						<!-- Resources -->
-						<NavMenu menu={resources} />
-
-
-
+            <li class="nav-item dropdown"><a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle">Resources
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/blog" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-edit"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          Blog
+                        </span> <small class="d-block text-muted">
+                          Latest News
+                        </small></div>
+                    </div>
+                  </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="/resources/catalogs" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-view-grid"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          Catalogs
+                        </span> <small class="d-block text-muted">
+                          Download pdf versions
+                        </small></div>
+                    </div>
+                  </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="/resources/webinars" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-video"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          Webinars
+                        </span> <small class="d-block text-muted">
+                          On-demand technical content
+                        </small></div>
+                    </div>
+                  </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="/certification-faq" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-edit"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          FAQ
+                        </span> <small class="d-block text-muted">
+                          Frequently-asked questions
+                        </small></div>
+                    </div>
+                  </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="/contact" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-mail"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          Contact us
+                        </span> <small class="d-block text-muted">
+                          training@petroskills.com
+                        </small></div>
+                    </div>
+                  </a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="/registration-policies" class="dropdown-item">
+                    <div class="d-flex">
+                      <div class="lead text-muted pt-1"><i class="ci-edit"></i></div>
+                      <div class="ms-2"><span class="d-block text-heading">
+                          Registration Policies
+                        </span></div>
+                    </div>
+                  </a></li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
